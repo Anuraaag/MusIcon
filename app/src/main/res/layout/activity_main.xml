@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/c5"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="18dp" />
+
+        <TextView
+            android:id="@+id/end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:text="00:00"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+
+    <SeekBar
+        android:id="@+id/songSeek"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/c4"
+        android:thumbTint="@color/c6"
+        android:progressDrawable="@drawable/progress" />
+
+    <LinearLayout
+       android:background="@color/grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_play_arrow_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_pause_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_stop_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/stopDisabled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_stop_grey_24dp_disabled" />
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_volume_up_black_24dp"
+        android:layout_marginTop="40dp"/>
+
+    <SeekBar
+        android:id="@+id/volumeSeek"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:thumbTint="@color/c10"
+        android:rotation="270"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_volume_down_black_24dp"/>
+
+
+</LinearLayout>
