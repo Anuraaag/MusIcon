@@ -1,12 +1,20 @@
 package com.example.anurag.musicon;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -157,8 +165,15 @@ public class MainActivity extends AppCompatActivity {
 
         /* ********************                  play event start                  ********************** */
         play.setOnClickListener(new View.OnClickListener() {
-            @Override
+            String urlString = "http://mysuperwebsite";
+            Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(urlString));
+            PendingIntent pIntent = PendingIntent.getActivity(MainActivity.this, 0, intent, 0);
+            Notification notification;
+
             public void onClick(View v) {
+                //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setPackage("com.android.chrome");
+
 //                start.setText(mediaPlayer.getCurrentPosition());
 //                end.setText(mediaPlayer.getDuration());
                 stopDisabled.setVisibility(View.GONE);
@@ -166,6 +181,15 @@ public class MainActivity extends AppCompatActivity {
                 play.setVisibility(View.GONE);
                 pause.setVisibility(View.VISIBLE);
                 mediaPlayer.start();
+                notification = new Notification.Builder(MainActivity.this)
+                        .setSmallIcon(R.drawable.ic_play_arrow_black_24dp)
+                        .setContentTitle("Music Playing")
+                        .setContentText("Playing music")
+                        .addAction(R.drawable.ic_play_arrow_black_24dp,"PLAY",pIntent)
+
+                        .getNotification();
+                NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+                nm.notify(0,notification);
 
                 /* colors start*/
 
@@ -280,5 +304,28 @@ public class MainActivity extends AppCompatActivity {
         }
 //      mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.test);
         status = 0;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.item1:
+                Toast.makeText(getApplicationContext(),"Item 1 Selected",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item2:
+                Toast.makeText(getApplicationContext(),"Item 2 Selected",Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item3:
+                Toast.makeText(getApplicationContext(),"Item 3 Selected",Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
